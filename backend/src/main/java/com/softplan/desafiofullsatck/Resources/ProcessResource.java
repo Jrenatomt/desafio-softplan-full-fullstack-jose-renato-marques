@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +39,7 @@ public class ProcessResource {
 		return ResponseEntity.ok().body(process);
 	}
 	
-	@GetMapping(value = "/{userId}")
+	@GetMapping(value = "/{processId}")
 	public ResponseEntity<ProcessDto> findProcessById(@PathVariable Long processId){
 		ProcessDto ProcessDto = service.findProcessById(processId);
 		return ResponseEntity.ok().body(ProcessDto);	
@@ -50,6 +51,12 @@ public class ProcessResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{processId}")
 				.buildAndExpand(ProcessDto.getId()).toUri();
 		return ResponseEntity.created(uri).body(ProcessDto);
+	}
+	
+	@PutMapping(value = "/{processId}")
+	public ResponseEntity<ProcessDto> updateProcess(@PathVariable Long processId,@RequestBody ProcessDto dto){
+		dto = service.update(processId, dto);
+		return ResponseEntity.ok().body(dto);
 	}	
 	
 

@@ -32,6 +32,7 @@ public class Process implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	@Column(columnDefinition = "TEXT")
 	private String description;
 	
 	@Enumerated(EnumType.STRING)

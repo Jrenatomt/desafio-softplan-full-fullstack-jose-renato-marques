@@ -2,6 +2,8 @@ package com.softplan.desafiofullsatck.services;
 
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,7 +38,7 @@ public class ProcessService {
 	public ProcessDto findProcessById(Long processId) {
 		Optional<Process> process = repository.findById(processId);
 		Process entity = process.orElseThrow(() -> new ResourceNotFoundException("processo não encontrado na base de dados."));
-		return new ProcessDto(entity);
+		return new ProcessDto(entity, entity.getUsers());
 	}
 	
 	@Transactional
@@ -46,6 +48,19 @@ public class ProcessService {
 		entity = repository.save(entity);
 		return new ProcessDto(entity);
 	}
+	
+	@Transactional
+	public ProcessDto update(Long id, ProcessDto ProcessDto) {
+		try {
+			 Process entity = repository.getOne(id);
+			 copyDtoToEntity(ProcessDto, entity);
+			 entity = repository.save(entity);
+			 return new ProcessDto(entity);
+			}
+		     catch(EntityNotFoundException e) {
+		    	throw new ResourceNotFoundException("Processo não encontrado para o id" + id);
+		     }
+       }
 	
 	private void copyDtoToEntity(ProcessDto processDto, Process entity) {
 		entity.setName(processDto.getName());

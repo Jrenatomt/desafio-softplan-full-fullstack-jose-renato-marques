@@ -5,6 +5,8 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
+
 import com.softplan.desafiofullsatck.entities.Feedback;
 import com.softplan.desafiofullsatck.entities.Process;
 import com.softplan.desafiofullsatck.entities.User;
@@ -13,6 +15,7 @@ public class FeedbackDto implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	@Column(columnDefinition = "TEXT")
 	private String textFeedback;
 	private Instant createdAt;
 	

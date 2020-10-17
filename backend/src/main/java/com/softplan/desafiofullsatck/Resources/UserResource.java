@@ -33,7 +33,7 @@ public class UserResource {
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
-			@RequestParam(value = "orderBy", defaultValue = "username") String orderBy) {
+			@RequestParam(value = "orderBy", defaultValue = "firstName") String orderBy) {
 
 		PageRequest pegaRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		Page<UserDto> users = service.findAllUsers(pegaRequest);

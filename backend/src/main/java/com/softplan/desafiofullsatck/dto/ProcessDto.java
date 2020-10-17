@@ -4,6 +4,8 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
+
 import com.softplan.desafiofullsatck.entities.Process;
 import com.softplan.desafiofullsatck.entities.User;
 import com.softplan.desafiofullsatck.entities.enums.ProcessStatus;
@@ -12,6 +14,7 @@ public class ProcessDto {
 	
 	private Long id;
 	private String name;
+	@Column(columnDefinition = "TEXT")
 	private String description;
 	
 	private Instant createdAt;
