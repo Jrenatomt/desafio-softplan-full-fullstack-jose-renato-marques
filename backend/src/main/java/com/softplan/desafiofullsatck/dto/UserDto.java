@@ -9,9 +9,9 @@ public class UserDto implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
-	private String username;
+	private String firstName;
+	private String lastName;
 	private String email;
-	private String password;
 	private Role userRole;
 
 	public UserDto() {
@@ -19,18 +19,18 @@ public class UserDto implements Serializable{
 	
 	public UserDto(User entity) {
 		this.id = entity.getId();
-		this.username = entity.getUsername();
+		this.firstName = entity.getFirstName();
+		this.lastName = entity.getLastName();
 		this.email = entity.getEmail();
-		this.password = entity.getPassword();
 		this.userRole = entity.getUserRole();
 		
 	}
 
 	public UserDto(Long id, String username, String email, String password, Role userRole) {
 		this.id = id;
-		this.username = username;
+		this.firstName = username;
+		this.lastName = username;
 		this.email = email;
-		this.password = password;
 		this.userRole = userRole;
 	}
 
@@ -42,12 +42,20 @@ public class UserDto implements Serializable{
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getEmail() {
@@ -58,14 +66,6 @@ public class UserDto implements Serializable{
 		this.email = email;
 	}
 	
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public Role getUserRole() {
 		return userRole;
 	}
