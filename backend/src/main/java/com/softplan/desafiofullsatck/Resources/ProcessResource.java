@@ -46,11 +46,11 @@ public class ProcessResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<ProcessDto> CreateProcess(@RequestBody ProcessDto ProcessDto){
-		ProcessDto = service.insert(ProcessDto);
+	public ResponseEntity<ProcessDto> CreateProcess(@RequestBody ProcessDto processDto){
+		processDto = service.insert(processDto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{processId}")
-				.buildAndExpand(ProcessDto.getId()).toUri();
-		return ResponseEntity.created(uri).body(ProcessDto);
+				.buildAndExpand(processDto.getId()).toUri();
+		return ResponseEntity.created(uri).body(processDto);
 	}
 	
 	@PutMapping(value = "/{processId}")

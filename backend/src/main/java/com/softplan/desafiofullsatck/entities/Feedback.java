@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_feedback")
@@ -29,12 +32,13 @@ public class Feedback implements Serializable{
 	private String textFeedback;
 	private Instant createdAt;
 	 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "process_id")
 	private Process process;
 	
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "tb_feedback_users",
         joinColumns = @JoinColumn(name = "feedback_id"),
@@ -79,7 +83,11 @@ public class Feedback implements Serializable{
 	public Process getProcess() {
 		return process;
 	}
-	
+
+	public void setProcess(Process process) {
+		this.process = process;
+	}
+
 	public Set<User> getUsers() {
 		return users;
 	}

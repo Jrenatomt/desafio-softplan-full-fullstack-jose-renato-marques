@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,6 +22,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.softplan.desafiofullsatck.entities.enums.ProcessStatus;
 
 @Entity
@@ -44,10 +46,11 @@ public class Process implements Serializable {
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant updateAt;
 	
-	@OneToMany(mappedBy = "process", cascade = CascadeType.ALL)
+	@JsonIgnore
+	@OneToMany(mappedBy = "process", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Feedback> feedbacks = new HashSet<>();
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "tb_process_users",
         joinColumns = @JoinColumn(name = "process_id"),

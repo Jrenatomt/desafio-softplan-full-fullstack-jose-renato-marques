@@ -67,8 +67,6 @@ public class ProcessService {
 		entity.setDescription(processDto.getDescription());
 		entity.setProcessStatus(ProcessStatus.PENDENT);
 		
-		entity.getUsers().clear();		
-		
 		for (UserDto userDto : processDto.getUsers()) {
 			User user = userRepository.getOne(userDto.getId());
 			entity.getUsers().add(user);
