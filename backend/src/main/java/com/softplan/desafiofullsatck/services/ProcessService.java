@@ -14,7 +14,6 @@ import com.softplan.desafiofullsatck.dto.ProcessDto;
 import com.softplan.desafiofullsatck.dto.UserDto;
 import com.softplan.desafiofullsatck.entities.Process;
 import com.softplan.desafiofullsatck.entities.User;
-import com.softplan.desafiofullsatck.entities.enums.ProcessStatus;
 import com.softplan.desafiofullsatck.repositories.ProcessRepository;
 import com.softplan.desafiofullsatck.repositories.UserRepository;
 import com.softplan.desafiofullsatck.services.exception.ResourceNotFoundException;
@@ -60,12 +59,12 @@ public class ProcessService {
 		     catch(EntityNotFoundException e) {
 		    	throw new ResourceNotFoundException("Processo não encontrado para o id" + id);
 		     }
-       }
+       }	
 	
 	private void copyDtoToEntity(ProcessDto processDto, Process entity) {
 		entity.setName(processDto.getName());
 		entity.setDescription(processDto.getDescription());
-		entity.setProcessStatus(ProcessStatus.PENDENT);
+		entity.setProcessStatus(processDto.getProcessStatus());
 		
 		for (UserDto userDto : processDto.getUsers()) {
 			User user = userRepository.getOne(userDto.getId());

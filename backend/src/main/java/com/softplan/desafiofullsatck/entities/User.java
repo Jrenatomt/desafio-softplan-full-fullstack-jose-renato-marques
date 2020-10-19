@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.softplan.desafiofullsatck.entities.enums.Role;
 
 @Entity
@@ -23,8 +24,10 @@ public class User implements Serializable{
 		private String firstName;
 		private String lastName;
 		private String email;
+		@JsonIgnore
 		private String password;
 		
+		@JsonIgnore
 		@Enumerated(EnumType.STRING)
 		private Role userRole;
 		

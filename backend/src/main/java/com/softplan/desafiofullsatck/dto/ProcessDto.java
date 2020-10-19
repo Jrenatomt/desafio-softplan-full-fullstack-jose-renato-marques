@@ -1,5 +1,6 @@
 package com.softplan.desafiofullsatck.dto;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +14,8 @@ import com.softplan.desafiofullsatck.entities.Process;
 import com.softplan.desafiofullsatck.entities.User;
 import com.softplan.desafiofullsatck.entities.enums.ProcessStatus;
 
-public class ProcessDto {
+public class ProcessDto implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	@NotEmpty(message = "Preenchimento Obrigatório")

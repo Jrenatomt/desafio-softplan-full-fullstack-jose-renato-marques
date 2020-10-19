@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.softplan.desafiofullsatck.entities.User;
 import com.softplan.desafiofullsatck.entities.enums.Role;
 
@@ -25,6 +26,7 @@ public class UserDto implements Serializable{
 	@Email
 	private String email;
 	
+	@JsonIgnore
 	private Role userRole;
 
 	public UserDto() {
