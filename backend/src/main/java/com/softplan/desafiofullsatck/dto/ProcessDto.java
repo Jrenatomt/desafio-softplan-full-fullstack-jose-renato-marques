@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.softplan.desafiofullsatck.entities.Process;
 import com.softplan.desafiofullsatck.entities.User;
@@ -13,7 +16,11 @@ import com.softplan.desafiofullsatck.entities.enums.ProcessStatus;
 public class ProcessDto {
 	
 	private Long id;
+	@NotEmpty(message = "Preenchimento Obrigatório")
+	@Length(min = 2, max = 80, message="O tamanho deve ser entre 2 e 80 caracteres")
 	private String name;
+	
+	@NotEmpty(message = "Preenchimento Obrigatório")
 	@Column(columnDefinition = "TEXT")
 	private String description;
 	

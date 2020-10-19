@@ -2,6 +2,11 @@ package com.softplan.desafiofullsatck.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.softplan.desafiofullsatck.entities.User;
 import com.softplan.desafiofullsatck.entities.enums.Role;
 
@@ -9,9 +14,17 @@ public class UserDto implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	@NotEmpty(message = "Preenchimento Obrigatório")
+	@Length(min = 2, max = 120, message="O tamanho deve ser entre 2 e 120 caracteres")
 	private String firstName;
+	
+	@NotEmpty(message = "Preenchimento Obrigatório")
+	@Length(min = 2, max = 120, message="O tamanho deve ser entre 2 e 120 caracteres")
 	private String lastName;
+	
+	@Email
 	private String email;
+	
 	private Role userRole;
 
 	public UserDto() {
